@@ -7,16 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1 id="main-title">找一找 大挑戰</h1>
 
-        <!-- Start: Added Stats Container -->
+    <!-- Start: Added Start Screen -->
+    <div id="start-screen">
+        <h1>找一找 大挑戰</h1>
+        <p>請選擇每題的答案選項數量：</p>
+        <div class="options-selector">
+            <button class="option-choice-btn" data-options="2">2 個選項</button>
+            <button class="option-choice-btn" data-options="3">3 個選項</button>
+            <button class="option-choice-btn" data-options="4">4 個選項</button>
+        </div>
+    </div>
+    <!-- End: Added Start Screen -->
+
+    <div class="quiz-container" style="display: none;"> <!-- Initially hidden -->
         <div class="stats-container">
             <span id="current-q-info">目前題號: 1 / 總題數: 15</span> |
             <span id="correct-answers-stats">答對題數: 0</span> |
             <span id="accuracy-rate">答對率: 0%</span>
         </div>
-        <!-- End: Added Stats Container -->
 
         <div id="question-area">
             <div id="question-text-container">
@@ -24,13 +33,9 @@
                 <button id="play-question-audio-btn" aria-label="播放題目語音">🔊</button>
             </div>
 
-            <div class="image-options">
-                <div class="image-container" id="image-left-container">
-                    <img id="image-left" src="" alt="左邊選項">
-                </div>
-                <div class="image-container" id="image-right-container">
-                    <img id="image-right" src="" alt="右邊選項">
-                </div>
+            <!-- Modified: Dynamic Image Options Container -->
+            <div class="image-options-dynamic" id="image-options-container">
+                <!-- Image containers will be dynamically added here by JavaScript -->
             </div>
         </div>
 
