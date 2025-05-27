@@ -1,0 +1,135 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    color: #333;
+    -webkit-tap-highlight-color: transparent; /* Disable tap highlight on iOS */
+}
+
+.quiz-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 700px; /* Adjust as needed for iPad landscape/portrait */
+}
+
+#main-title {
+    color: #d9534f; /* Red color from your PDF */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#question-area {
+    margin-bottom: 20px;
+}
+
+#question-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#question-text {
+    font-size: 1.8em; /* Larger for readability */
+    margin: 0;
+    padding-right: 15px; /* Space for the button */
+}
+
+#play-question-audio-btn {
+    font-size: 2em; /* Make button larger */
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+}
+#play-question-audio-btn:hover {
+    color: #0056b3;
+}
+
+
+.image-options {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px; /* Space between images */
+}
+
+.image-container {
+    border: 3px solid transparent; /* For feedback */
+    border-radius: 10px;
+    overflow: hidden; /* Ensure border radius applies to image */
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    width: 45%; /* Each image container takes up roughly half */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Ensure white background if images have transparency */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 250px; /* Adjust based on your image aspect ratios and desired size */
+    display: block;
+    object-fit: contain; /* Ensures the whole image is visible */
+}
+
+.image-container:hover {
+    transform: scale(1.03);
+}
+
+/* Feedback styles */
+.image-container.correct {
+    border-color: green;
+}
+.image-container.incorrect {
+    border-color: red;
+}
+
+
+.navigation-buttons button {
+    padding: 12px 25px;
+    font-size: 1.2em;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: #5cb85c;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.navigation-buttons button:hover {
+    background-color: #4cae4c;
+}
+
+.navigation-buttons button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* iPad specific considerations (optional, adjust as needed) */
+@media (min-width: 768px) { /* Typical iPad portrait width */
+    #main-title {
+        font-size: 3em;
+    }
+    #question-text {
+        font-size: 2em;
+    }
+    .image-container img {
+        max-height: 300px;
+    }
+    .navigation-buttons button {
+        font-size: 1.3em;
+    }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>找一找 大挑戰</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1 id="main-title">找一找 大挑戰</h1>
+
+        <div id="question-area">
+            <div id="question-text-container">
+                <p id="question-text"></p>
+                <button id="play-question-audio-btn" aria-label="播放題目語音">🔊</button>
+            </div>
+
+            <div class="image-options">
+                <div class="image-container" id="image-left-container">
+                    <img id="image-left" src="" alt="左邊選項">
+                </div>
+                <div class="image-container" id="image-right-container">
+                    <img id="image-right" src="" alt="右邊選項">
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <button id="prev-question-btn">上一題</button>
+            <button id="next-question-btn">下一題</button>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="question-audio" src=""></audio>
+    <audio id="correct-audio" src="audio/correct_sound.mp3" preload="auto"></audio>
+    <audio id="incorrect-audio" src="audio/incorrect_sound.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
