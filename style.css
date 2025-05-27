@@ -7,8 +7,48 @@ body {
     margin: 0;
     background-color: #f0f0f0;
     color: #333;
-    -webkit-tap-highlight-color: transparent; /* Disable tap highlight on iOS */
+    -webkit-tap-highlight-color: transparent;
 }
+
+/* Start: Added Start Screen Styles */
+#start-screen {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+#start-screen h1 {
+    color: #d9534f;
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+#start-screen p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+.options-selector button {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    margin: 8px;
+    cursor: pointer;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.options-selector button:hover {
+    background-color: #0056b3;
+}
+/* End: Added Start Screen Styles */
+
 
 .quiz-container {
     background-color: white;
@@ -17,30 +57,23 @@ body {
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     text-align: center;
     width: 90%;
-    max-width: 700px; /* Adjust as needed for iPad landscape/portrait */
+    max-width: 800px; /* Can be wider for more options */
 }
 
-#main-title {
-    color: #d9534f; /* Red color from your PDF */
-    font-size: 2.5em;
-    margin-bottom: 15px; /* Adjusted margin */
-}
+/* Removed #main-title from quiz-container as it's now in start-screen */
 
-/* Start: Added Stats Container Styles */
 .stats-container {
     margin-bottom: 20px;
-    font-size: 1.1em; /* Adjust size as needed */
+    font-size: 1.1em;
     color: #555;
     padding: 10px;
-    background-color: #f7f7f7; /* Light background for the stats bar */
+    background-color: #f7f7f7;
     border-radius: 8px;
     border: 1px solid #ddd;
 }
 .stats-container span {
-    margin: 0 8px; /* Spacing between stat items */
+    margin: 0 8px;
 }
-/* End: Added Stats Container Styles */
-
 
 #question-area {
     margin-bottom: 20px;
@@ -54,13 +87,13 @@ body {
 }
 
 #question-text {
-    font-size: 1.8em; /* Larger for readability */
+    font-size: 1.8em;
     margin: 0;
-    padding-right: 15px; /* Space for the button */
+    padding-right: 15px;
 }
 
 #play-question-audio-btn {
-    font-size: 2em; /* Make button larger */
+    font-size: 2em;
     padding: 10px;
     background: none;
     border: none;
@@ -71,40 +104,61 @@ body {
     color: #0056b3;
 }
 
-
-.image-options {
+/* Modified: Dynamic Image Options Styles */
+.image-options-dynamic {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping if many options */
     justify-content: space-around;
     align-items: center;
-    gap: 20px; /* Space between images */
+    gap: 15px; /* Space between images */
 }
 
-.image-container {
-    border: 3px solid transparent; /* For feedback */
+.image-container { /* This class will be dynamically added */
+    border: 3px solid transparent;
     border-radius: 10px;
-    overflow: hidden; /* Ensure border radius applies to image */
+    overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s ease, border-color 0.2s ease;
-    width: 45%; /* Each image container takes up roughly half */
+    /* Width will be set by JS based on numOptions, or use flex-basis */
+    flex-basis: calc(50% - 10px); /* Default for 2 options, adjust gap */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff; /* Ensure white background if images have transparency */
+    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-height: 150px; /* Ensure a minimum height */
 }
+
+/* Adjust flex-basis for different number of options */
+.image-options-dynamic[data-options-count="3"] .image-container {
+    flex-basis: calc(33.33% - 10px);
+}
+.image-options-dynamic[data-options-count="4"] .image-container {
+    flex-basis: calc(25% - 10px); /* For 4 options, they might get small */
+    /* Or consider making them 2x2 grid for 4 options */
+}
+/* If 4 options, you might want a 2x2 grid: */
+.image-options-dynamic[data-options-count="4"] {
+    /* max-width: 600px; /* Constrain width for 2x2 */
+    /* margin: 0 auto; */
+}
+.image-options-dynamic[data-options-count="4"] .image-container {
+    flex-basis: calc(50% - 10px); /* For 2x2 layout with 4 items */
+    max-width: calc(50% - 10px);
+}
+
 
 .image-container img {
     max-width: 100%;
-    max-height: 250px; /* Adjust based on your image aspect ratios and desired size */
+    max-height: 200px; /* Adjust as needed */
     display: block;
-    object-fit: contain; /* Ensures the whole image is visible */
+    object-fit: contain;
 }
 
 .image-container:hover {
     transform: scale(1.03);
 }
 
-/* Feedback styles */
 .image-container.correct {
     border-color: green;
 }
@@ -134,11 +188,7 @@ body {
     cursor: not-allowed;
 }
 
-/* iPad specific considerations (optional, adjust as needed) */
-@media (min-width: 768px) { /* Typical iPad portrait width */
-    #main-title {
-        font-size: 3em;
-    }
+@media (min-width: 768px) {
     .stats-container {
         font-size: 1.2em;
     }
@@ -146,9 +196,7 @@ body {
         font-size: 2em;
     }
     .image-container img {
-        max-height: 300px;
+        max-height: 250px;
     }
-    .navigation-buttons button {
-        font-size: 1.3em;
-    }
+    /* Adjust image container flex-basis for larger screens if needed */
 }
