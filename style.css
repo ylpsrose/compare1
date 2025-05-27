@@ -23,8 +23,24 @@ body {
 #main-title {
     color: #d9534f; /* Red color from your PDF */
     font-size: 2.5em;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Adjusted margin */
 }
+
+/* Start: Added Stats Container Styles */
+.stats-container {
+    margin-bottom: 20px;
+    font-size: 1.1em; /* Adjust size as needed */
+    color: #555;
+    padding: 10px;
+    background-color: #f7f7f7; /* Light background for the stats bar */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+.stats-container span {
+    margin: 0 8px; /* Spacing between stat items */
+}
+/* End: Added Stats Container Styles */
+
 
 #question-area {
     margin-bottom: 20px;
@@ -122,6 +138,9 @@ body {
 @media (min-width: 768px) { /* Typical iPad portrait width */
     #main-title {
         font-size: 3em;
+    }
+    .stats-container {
+        font-size: 1.2em;
     }
     #question-text {
         font-size: 2em;
